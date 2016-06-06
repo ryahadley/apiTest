@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html ng-app='api'>
+  <head>
+    <title>Flavor Savor</title>
+    <link rel='stylesheet' href='style.css'>
+  </head>
+  <body ng-controller='apiCtrl'>
+    <h1 id="startLat"></h1>
+    <h1 id="startLon"></h1>
+    Search For Places Near By: <input type='text' ng-model='term'>
+    <button type="submit" ng-click="showfood(laty, longy, term)">Submit</button>
+    <p>Places:</p>
+    <button type='submit' ng-click='nextPage(laty, longy, reuse, token)'>Next Page</button>
+
+    <input type='text' ng-model='query'>
+    <button type='submit' ng-click='textSearch(laty, longy, query)'>Query</button>
+
+    <div ng-repeat='goog in google'>
+      {{goog.name}}
+      <div><img class='foodimage' ng-click='details(goog.place_id)' src="{{goog.icon}}"></div>
+      <div class='ingredients'>
+        <input type='number' ng-model='increaseBy'>
+        <button ng-click='multiplyServings(list, increaseBy)'>Add</button>
+      </div>
+    </div>
+  </body>
+
+<script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.20/angular.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+<script src='app.js'></script>
+<script src='controller.js'></script>
+<script src='service.js'></script>
+</html>
