@@ -1,4 +1,4 @@
-angular.module('api').controller('apiCtrl', function($scope, apiserv) {
+angular.module('api').controller('apiCtrl', function($scope, apiserv, secretserv) {
 
 
 window.onload = function() {
@@ -38,12 +38,29 @@ console.log(lat, long);
     });
   }
 
-  $scope.nextPage = function(lat, long, type, token) {
-
-    apiserv.getRecipe(lat, long, type, token).then(function(response) {
+  $scope.nextPage = function(address) {
+    address.address_list = "/.api/v1/addresslist/6849/";
+    apiserv.getNext(address).then(function(response) {
       console.log(response);
-
+      $scope.users = response.data.objects;
     });
+  }
+
+  $scope.namesPlease = function() {
+    apiserv.getName().then(function(response) {
+      console.log(response);
+      $scope.users = response.data.objects;
+    })
+  }
+
+
+
+  $scope.killName = function(uri, index) {
+    $scope.deleteIndex = index;
+    apiserv.deleteName(uri).then(function(response) {
+      $scope.users.splice($scope.deleteIndex, 1);
+      console.log(response);
+    })
   }
 
   $scope.details = function(id) {
@@ -62,6 +79,11 @@ console.log(lat, long);
         $scope.google = response.data.results;
       });
     }
+
+    $scope.testsecret = function() {
+      $scope.dumdum = secretserv.secret();
+    }
+    $scope.testsecret();
 
 //   $scope.multiplyServings = function(list, increaseBy) {
 //     function servings(list, num) {

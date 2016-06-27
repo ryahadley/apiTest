@@ -10,8 +10,15 @@
     Search For Places Near By: <input type='text' ng-model='term'>
     <button type="submit" ng-click="showfood(laty, longy, term)">Submit</button>
     <p>Places:</p>
-    <button type='submit' ng-click='nextPage(laty, longy, reuse, token)'>Next Page</button>
+    NAME:<input ng-model="address.name">
+    ADDRESS:<input ng-model="address.address_line_1">
+    CITY:<input ng-model="address.city">
+    STATE:<input ng-model="address.state">
+    POSTAL:<input ng-model="address.postal_code">
+    ADRESSLIST:<input ng-model="address.address_list">
 
+    <button type='submit' ng-click='nextPage(address)'>Next Page</button>
+    <button type='submit' ng-click='namesPlease()'>GET NAMES</button>
     <input type='text' ng-model='query'>
     <button type='submit' ng-click='textSearch(laty, longy, query)'>Query</button>
 
@@ -23,6 +30,16 @@
         <button ng-click='multiplyServings(list, increaseBy)'>Add</button>
       </div>
     </div>
+
+    <div class="" ng-repeat="user in users">
+      <div class="">
+        {{user.name}} {{user.resource_uri}}  <button type='submit' ng-click='killName(user.resource_uri, $index)'>delete</button>
+      </div>
+    </div>
+
+    <div class="dum">
+      {{dumdum}}
+    </div>
   </body>
 
 <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.2.19.min.js"></script>
@@ -33,4 +50,5 @@
 <script src='app.js'></script>
 <script src='controller.js'></script>
 <script src='service.js'></script>
+<script src='secretservice.js'></script>
 </html>
